@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load facet_filters %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href={% static "css/custom-homepage.css" %}>
+<style>
+    footer a#about-link{
+        visibility: visible;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+{% include "navigator.html" %}
+<div class="jumbotron" style="font-size: 30px; background-color: #777; text-align: center; font-variant: small-caps;">
+Platinum Technologies
+<br/>
+{% if not user.is_authenticated %}<a href={% url "account_signup" %} class="btn-primary btn" role="button">Sign up!</a><br><br>{% endif %}
+</div>
+<div class="row">
+{% for fields in recent_posts %} 
+        <section>
+            <svg class="marginate" width="100px" height="100px" style="border-radius: 50%;">
+                <rect width="100%" height="100%" fill="black"></rect>
+            </svg>
+            <br>
+            <h2>{{fields.title}}</h2>
+            <br>
+            <div>
+                {{fields.body|summary_blog|safe}}
+            </div>
+            <br>
+            <a href={% url "detail" fields.datetime_added.date fields.title %} class= "btn btn-primary" role="button">View details »</a>
+        </section>
+{% endfor %}
+</div>
+{% endblock content %} 

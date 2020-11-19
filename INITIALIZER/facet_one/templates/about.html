@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block style %}
+<style>
+    footer a#home-link{
+        visibility: visible;
+    }    
+</style>    
+{% endblock %}
+{% block content %}
+<span>
+{% if messages %}
+    {% for message in messages %}
+        <div class="container-fluid p-0">
+          <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span> 
+            </button>
+            {{ message }}
+          </div>
+        </div>
+    {% endfor %}      
+{% endif %}  
+</span>
+<span style="display: none;" id="spacer"><br></span>
+<h3>Author: Cynic</h3>
+<h3>Email-Address: oladosumoses24@gmail.com</h3> 
+{% endblock content %}
+  	

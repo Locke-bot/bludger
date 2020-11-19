@@ -1,0 +1,10 @@
+[workspace]
+restore_data_on_startup = True
+save_data_on_exit = True
+save_history = True
+save_non_project_files = False
+
+[main]
+version = 0.2.0
+recent_files = ['initializer\\urls.py', 'facet_one\\views.py', 'facet_one\\templates\\about.html', 'facet_one\\templates\\bloglist.html', 'manage.py', 'facet_one\\tests.py', 'facet_one\\form.py', '..\\Lib\\site-packages\\django\\test\\client.py', '..\\Lib\\site-packages\\django\\core\\handlers\\base.py']
+

@@ -1,0 +1,41 @@
+.page-no *{
+    background-color: lawngreen;
+    border: thin solid #94a585;
+    border-radius: 0.1em;
+}
+.page-no{
+    text-align: center;
+}
+.current-page *{
+    background-color: rgb(177, 219, 36);    
+}
+.prev-link, .next-link{
+    background-color: transparent;
+    border: none;
+    margin: 0 40px;
+}
+.novisual{
+    visibility: hidden;
+}
+.divine{
+    display: flex;
+    justify-content: center;
+}
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 98%;
+}
+.row{
+    padding-bottom: 80px;
+}
+footer{
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+}
+#platinum-footer{
+    bottom: 0;
+}
+section{
+    margin: 0 10px;}
