@@ -142,7 +142,6 @@ def add_css(value, attr):
 
 @register.filter()
 def unescape(value):
-    print(html.unescape(value))
     return html.unescape(value)
     
 @register.filter()

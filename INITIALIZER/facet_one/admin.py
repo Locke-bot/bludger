@@ -62,4 +62,7 @@ admin.site.register(Url, UrlClass)
 admin.site.register(LinksVisit, LinksVisitor)
 admin.site.register(Blog, Blogger)
 
+StaffAdmin.register(UrlCount, UrlCounter)
+StaffAdmin.register(Url, UrlClass)
+StaffAdmin.register(LinksVisit, LinksVisitor)
 StaffAdmin.register(Blog, Blogger)
