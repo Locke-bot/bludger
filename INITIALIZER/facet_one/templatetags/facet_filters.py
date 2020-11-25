@@ -9,6 +9,7 @@ Created on Wed Sep 23 11:08:32 2020
 
 import re
 import os
+import html
 from django.conf import settings
 from django import template
 import os
@@ -139,6 +140,11 @@ def add_css(value, attr):
         value = value[:index] + attr + value[index:]
         return value
 
+@register.filter()
+def unescape(value):
+    print(html.unescape(value))
+    return html.unescape(value)
+    
 @register.filter()
 def summary_blog(value):
     breaks = ["<img", "<pre"] # cut it off at image or pre tags, or for pre substitute it with <p tags

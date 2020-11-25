@@ -56,7 +56,8 @@ class VisitCountMiddleware:
                 re.compile(r'(^/blog/([-\d]+)/(\w+)/$)'), # for the DetailViewPage class
                 re.compile(r'(^/articles/(\d+)/$)'), # For the articles page (Explore link)
                 re.compile(r'(^/accounts/confirm-email/(\S+)/$)'), # email-confirm page
-                re.compile(rf'(^/{settings.ADMIN_URL}/)'), # Group all admin pages together, don't need the details, coerce urls back to this
+                re.compile(rf'(^/{settings.SUPERUSER_ADMIN_URL}/)'), # Group all admin pages together, don't need the details, coerce urls back to this
+                re.compile(rf'(^/{settings.STAFF_ADMIN_URL}/)'), # Group all admin pages together, don't need the details, coerce urls back to this
                 re.compile(rf'(^{settings.MEDIA_URL})'),
                 re.compile(rf'(^{settings.STATIC_URL})'),
             ]
@@ -66,14 +67,17 @@ class VisitCountMiddleware:
                 {'format': 'Articles Page - {}', 'args':(0,)},
                 {'constant': 'Email confirmation'},
                 {'constant': 'admin'},
+                {'constant': 'staff_admin'},
                 {'constant': 'media'},
+                {'constant': 'static'},
             ]
     
         descript = descript_urls.get(request.path, None)
         if descript is None:
             for i, url_re in enumerate(dynamic_urls_re):
                 if url_re.findall(request.path):
-                    working_copy = dict(dynamic_urls_args[i])
+                    working_copy = dict(dynamic_urls_args[i]) 
+                    # this gives that both dynamic lists must be of the same length
                     working_copy['url_re'] = url_re
                     descript = desc(**working_copy)
                     break

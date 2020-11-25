@@ -185,9 +185,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(f'{BASE_DIR}', 'bootstrap-4.5.2-dist'),)
+STATICFILES_DIRS = (os.path.join(f'{BASE_DIR}', 'bootstrap-4.5.2-dist'), os.path.join(f'{BASE_DIR}', 'media'))
 
-ADMIN_URL = 'harry-potter-and-the-half-blood-prince'
+SUPERUSER_ADMIN_URL = 'harry-potter-and-the-half-blood-prince'
+STAFF_ADMIN_URL = 'albus-severus-potter'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 

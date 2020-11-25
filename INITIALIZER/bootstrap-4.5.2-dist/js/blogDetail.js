@@ -25,15 +25,14 @@ $(function(){
     y = $(".collapser")
     
     $("#comments").on("click", ".likeButton", function(){
-        console.log("like button clicked")
+        console.log("like button clicked", "if I like")
         $this = $(this)    
         next = $this.next() // the label 
         list = next.html().split(" ") 
         $(".likeButton").prop("disabled", true)
         ajax = $.ajax({
             type: "POST",
-            url: "{% url 'detail' blog.datetime_added.date blog.title %}", // blog title is unique too
-            data: {"name": "likes", "status": $this.is(":checked"), "pk": $this.parent().parent().parent().find("textarea").attr("name"), "csrfmiddlewaretoken": csrf_token},
+            data: {"name": "likes", "status": $this.is(":checked"), "pk": $this.parent().parent().parent().find("textarea").attr("name")},
             success: function(response){
                     prev = Number(list[0])
                     $this.is(":checked")? prev+=1: prev-=1;

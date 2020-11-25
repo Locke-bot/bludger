@@ -61,7 +61,6 @@ class DetailPageView(FormMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs) 
         initial={'blog': self.object}
-        print("ReQU", self.request.path)
         if self.request.user.is_authenticated:
             initial["author"] = self.request.user
         context['form'] = CommentForm(initial=initial) 
@@ -70,7 +69,9 @@ class DetailPageView(FormMixin, DetailView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object() 
         if self.request.is_ajax():
+            print("DICO")
             dico = request.POST
+            print(dico)
             if dico.get("name") == "likes":
                 try:
                     x = CommentLikes.objects.filter(user=request.user)[0]

@@ -19,10 +19,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static # new
 from facet_one import views as one_views
+from facet_one.admin import StaffAdmin
 
 urlpatterns = [
     # when the admin url is changed, a change has to be made to the url used in the url_fieldset_js.js file
-    path(f'{settings.ADMIN_URL}/', admin.site.urls),
+    path(f'{settings.SUPERUSER_ADMIN_URL}/', admin.site.urls),
+    path(f'{settings.STAFF_ADMIN_URL}/', StaffAdmin.urls),
     url(r'^$',one_views.HomePageView, name='homepage'),
     url(r'^articles/(?P<page>\d+)/', one_views.ListBlogPost.as_view(), name='articles'),
     url(r'blog/(?P<date_created>[\d-]+)/(?P<blog_name>\w+)/', one_views.DetailPageView.as_view(), name='detail'),

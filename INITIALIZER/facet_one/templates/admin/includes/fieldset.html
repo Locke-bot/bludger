@@ -16,7 +16,7 @@
                     {% else %}
                         {{ field.label_tag }}
                         {% if field.is_readonly %}
-                            <div class="readonly">{{ field.contents }}</div>
+                            <div class="readonly">{{ field.contents|unescape|safe }}</div>
                         {% elif opts.model_name == 'url' and field|check_attr:"id" == "id_url_visit_count" %}
                             {{ field.field }}
                         {% else %}

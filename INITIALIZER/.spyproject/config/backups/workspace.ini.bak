@@ -1,0 +1,10 @@
+[workspace]
+restore_data_on_startup = True
+save_data_on_exit = True
+save_history = True
+save_non_project_files = False
+
+[main]
+version = 0.2.0
+recent_files = ['..\\..\\Shawty\\cacher.py', '..\\..\\Shawty\\cachee.py', '..\\..\\Shawty\\untitled0.py', '..\\..\\Shawty\\untitled1.py', '..\\..\\anaconda3\\lib\\datetime.py', '..\\..\\Shawty\\untitled3.py', 'initializer\\urls.py', 'facet_one\\views.py', 'facet_one\\templates\\about.html', 'facet_one\\templates\\bloglist.html', 'manage.py', 'facet_one\\tests.py', 'facet_one\\form.py', '..\\Lib\\site-packages\\django\\test\\client.py', '..\\Lib\\site-packages\\django\\core\\handlers\\base.py', 'bootstrap-4.5.2-dist\\js\\blogDetail.js', 'initializer\\settings.py', 'facet_one\\models.py', 'facet_one\\admin.py', 'facet_one\\templates\\admin\\facet_one\\blog\\change_form.html', 'initializer\\middleware\\check.py']
+
