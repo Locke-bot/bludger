@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+{% load facet_filters %}
+{% block style %}
+<style>
+    article{
+        margin: 20px;
+    }
+    section{
+        font-family: "Roboto", "Open Sans", sans-serif;
+    }
+    .usercomment, .slideComment{
+        display: block; 
+        margin: 10px 0px;
+        resize: none;
+        margin-top: 2px;
+        margin-bottom: 2px;        
+    }
+    .smallfont{
+        font-size: 12px;
+        vertical-align: top;
+    }
+    .usercomment{
+        background-color: rgba(239, 239, 239, 0.3); 
+        outline: none;
+    } 
+    .nodisplay{
+        display: none;
+    }
+    .dotfont{
+        font-weight: 1000;
+    }
+    .commentReply{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    span[hide]{ 
+        display: none;
+    } 
+    span[hide="0"]{
+        display: block;
+    }
+    footer a#home-link{
+        visibility: visible;
+    }
+</style>
+{% endblock style %}
+{% block title %}{{blog.title}}{% endblock title %}
+
+{% block script %} 
+<script src={% static 'js/blogDetail.js' %} ></script>
+{% endblock %} 
+    
+{% block content %} 
+{% include "navigator.html" %}
+<article>
+    <h1>{{blog.title}}</h1>
+    <hr>
+    <h6>{{blog.author}}</h6>
+    <h6>Created {{blog.datetime_added}}</h6>
+    <hr>
+    <section>
+        {{blog.body|safe|linebreaks}}
+    </section>
+    <br>
+    <hr> 
+    {% if blog.enable_comment == 1 %} {% comment %} 1 if comment is enabled for the blog post, 2 otherwise {% endcomment %}
+    <h3 style="font-style: italic; color: silver;">Comments</h3>
+    <section id="comments">
+        {% for comment in blog.usercomment_set.all|slice:"::-1" %} 
+            {% comment %} comments in reverse, last added comes first {% endcomment %}
+            {% if not comment.reply %}
+                {% comment %}
+                    comments to blogs and not reply, if I can get how to filter in the for loop above
+                {% endcomment %}
+                {% if user.is_authenticated %}
+                    {{ comment|comments_reply:user|safe }}
+                {% else %} 
+                    {{ comment|comments_reply|safe }}
+                {% endif %}
+            {% endif %}
+        {% endfor %} 
+        <br>
+        <a id="addComment" href="#addComment">add comment</a> 
+        <form method="POST" id="postComment" {% if user.is_authenticated %}authenticated{% endif %}>
+            {% csrf_token %} 
+            {{form.text|add_css:"class,slideComment"|add_css:"rows,4"|add_css:"required"|safe}} 
+            <span class="nodisplay">{{form.reply}}</span>
+            <span class="nodisplay">{{form.author}}</span>
+            <span class="nodisplay">{{form.blog}}</span>
+            <input id="adder" style="font-size:12px; padding: 2px;" type="button" value="Post" class="btn btn-secondary">
+        </form>
+        <br>
+    </section>
+    {% else %}
+    <section>
+        <h3 style="font-style: italic; color: silver;">Comments disabled for this post.</h3>
+    </section>
+    {% endif %}
+</article>
+<br><br>
+{% endblock content %} 
