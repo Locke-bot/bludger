@@ -1,0 +1,4 @@
+staticfiles/
+untitled*.py
+*.sqlite
+*.pyc
