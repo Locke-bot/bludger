@@ -115,11 +115,9 @@ $(function(){
         slide.css("margin-left", num+offset+"px") // increment its shift to the right by offset
         slide.insertAfter($this.next().next()) 
         if (!slide.is(":visible")){
-            console.log("SHOW")
             slide.show() 
         }           
         else{
-            console.log("HIDE")
             slide.hide() 
         }
     }) 
@@ -129,7 +127,6 @@ $(function(){
         text = $this.parent().find("textarea").val();
         console.log("nati", text.trim(), "j", text.trim()=="")
         if (text.trim()==""){
-            console.log("NOthing dey")
             return
         }
         

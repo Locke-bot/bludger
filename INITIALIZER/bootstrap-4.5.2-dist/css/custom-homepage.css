@@ -10,7 +10,7 @@ section *{
 h2{
     text-align: center;
 }
-svg.marginate{
+svg.marginate, img.marginate{
     margin: 10px;
     margin-left: 37.5%;
 }

@@ -22,7 +22,8 @@ class VisitCountMiddleware:
                 return response
         
         url = request.path
-            
+        
+        
         def desc(*, format=None, args=None, constant=None, url_re=None):
             # change the outer function url variable
             nonlocal url
@@ -73,6 +74,7 @@ class VisitCountMiddleware:
             ]
     
         descript = descript_urls.get(request.path, None)
+        
         if descript is None:
             for i, url_re in enumerate(dynamic_urls_re):
                 if url_re.findall(request.path):
@@ -84,7 +86,7 @@ class VisitCountMiddleware:
             else:
                 descript = request.path 
         
-        link = facet_one_models.Url.objects.filter(url=url) 
+        link = facet_one_models.Url.objects.filter(url=url) # same link with a particular description 
         date = datetime.date.today() # safer, we gotta refer to the same date, just an edge case though.
         url_count = facet_one_models.UrlCount.objects.get_or_create(date=date, Url=url, defaults={'description':descript})[0]
         # a get search won't entail the inmates of defaults
@@ -93,7 +95,11 @@ class VisitCountMiddleware:
         if not link:
             facet_one_models.Url.objects.create(url=url, descriptor=descript,
                                                 url_visit_count=url_count)
-
+        if link and link[0].descriptor != descript:
+            link_ = link[0]
+            link_.descriptor = descript
+            link_.save()
+            
         url_count.count += 1
         url_count.save()
         

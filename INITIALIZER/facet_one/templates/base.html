@@ -27,9 +27,11 @@
     <script src={% static 'js/navigator.js' %} type="text/javascript"></script>
     {% block script %}{% endblock script %}
 	<title>{% block title %}{% endblock title %}</title>
-</head> 
+</head>
 <body>
     {% block content %}{% endblock content %}
 </body>
+{% block extra_body %}
+{% endblock %}
 <footer id="platinum-footer">© <strong>Platinum Technologies 2020 <a id="home-link" href={% url 'homepage' %}><font color="initial">|</font></span> Home</a><a id="about-link" href={% url "about:about_page" %}><font color="initial">| </font>About</a></footer></strong>
 </html> 

@@ -58,7 +58,7 @@ class Staff(User):
     
 class Blog(models.Model):
     id = models.AutoField(primary_key=True)
-    author = models.ForeignKey(Staff, on_delete=models.CASCADE)  # deciding 2 authors can't be credited witha asingle post.
+    author = models.ForeignKey(Staff, on_delete=models.PROTECT)  # deciding 2 authors can't be credited witha asingle post.
     datetime_added = models.DateTimeField(auto_now_add=True, verbose_name='date&time added') 
     last_updated = models.DateTimeField(auto_now=True, blank=True)
     title = models.CharField(max_length=50, unique=True)

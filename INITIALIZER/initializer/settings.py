@@ -14,24 +14,24 @@ __to Us who are shit scared but do it anyways__Eldris?
 """
 
 from pathlib import Path
-from django.contrib.messages import constants as messages 
-import os 
+from django.contrib.messages import constants as messages
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-# Quick-start development settings - unsuitable for production
+# Quick-start development settings - unsuitable for productionem
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # The road to hell is paved with hard coded paths!
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = 'b^(_l6=xtu^%vo1hd^k&qpx&tf*4&s=d-n7qm^)f7%dy7*+iei'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
- 
-ALLOWED_HOSTS = []
+DEBUG = True
 
-# Application definition 
+ALLOWED_HOSTS = ['cynicbot.pythonanywhere.com'] # the one used in development can't be used together.
+
+# Application definition
 
 LOGIN_REDIRECT_URL = "homepage"
 LOGOUT_REDIRECT_URL = "homepage"
@@ -42,7 +42,7 @@ MESSAGE_TAGS = {
         messages.SUCCESS: 'success',
         messages.WARNING: 'warning',
         messages.ERROR: 'danger',
-} 
+}
 
 # SITE_ID = 1
 
@@ -69,7 +69,15 @@ AUTHENTICATION_BACKENDS = [ 'django.contrib.auth.backends.ModelBackend',
 'allauth.account.auth_backends.AuthenticationBackend']
 # EMAIL_BACKEND so allauth can proceed to send confirmation emails
 # ONLY for development/testing use console
-EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'oladosumoses24@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'oladosumoses24@gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_USE_SSL = False
+EMAIL_HOST_PASSWORD = '#Heaven123' # this should be an environment variable
 # Custom allauth settings
 # Use email as the primary identifier
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
@@ -98,7 +106,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'initializer.urls'
 
-IP_ADDRESSES = ('127.0.0.1:8000', )
+# IP_ADDRESSES = ('127.0.0.1:8000', )
 INTERNAL_IPS = ['127.0.0.1']
 
 TINYMCE_DEFAULT_CONFIG = {
@@ -109,16 +117,6 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = True
-# TINYMCE_EXTRA_MEDIA = {
-# 'css': {
-# 'all': [
-# ...
-# ],
-# },
-# 'js': [
-# ...
-# ],
-# }
 
 TEMPLATES = [
     {
@@ -191,7 +189,7 @@ SUPERUSER_ADMIN_URL = 'harry-potter-and-the-half-blood-prince'
 STAFF_ADMIN_URL = 'albus-severus-potter'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = BASE_DIR / 'staticfiles' # where collectstatic will collect the static files.
 

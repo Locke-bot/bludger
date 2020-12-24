@@ -21,9 +21,14 @@ Platinum Technologies
 <div class="row">
 {% for fields in recent_posts %} 
         <section>
-            <svg class="marginate" width="100px" height="100px" style="border-radius: 50%;">
-                <rect width="100%" height="100%" fill="black"></rect>
-            </svg>
+            {% if not fields.blog_image %}
+                <svg class="marginate" width="100px" height="100px" style="border-radius: 50%;">
+                    <rect width="100%" height="100%"</rect>
+                </svg>
+            {% endif %}
+            {% if fields.blog_image %}
+                <img class="marginate" width="100px" height="100px" style="border-radius: 50%;" src={{ fields.blog_image.url }}></img>
+            {% endif %}
             <br>
             <h2>{{fields.title}}</h2>
             <br>
